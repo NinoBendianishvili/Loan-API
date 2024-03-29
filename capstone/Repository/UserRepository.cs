@@ -33,7 +33,6 @@ public class UserRepository : IUserRepository
     
     public ICollection<User> GetAllUsers()
     {
-        // Assuming ApplicationDbContext has a Users DbSet
         return _context.Users.Select(u => new User
         {
             Id = u.Id,
@@ -43,7 +42,6 @@ public class UserRepository : IUserRepository
             IsBlocked = u.IsBlocked,
             Email = u.Email,
             Loans = u.Loans
-            // Map other properties as needed
         }).ToList();
     }
 

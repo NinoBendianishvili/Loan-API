@@ -48,7 +48,6 @@ public class TokenService : ITokenService
         }
         catch (Exception ex)
         {
-            // Log or handle the exception
             return null;
         }
     }
@@ -64,8 +63,6 @@ public class TokenService : ITokenService
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_secretKey);
-
-        // Ensure that tokenString is not null before attempting to convert it to bytes
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
@@ -115,7 +112,6 @@ public class TokenService : ITokenService
         }
         catch (Exception ex)
         {
-            // Log or handle the exception
             return null;
         }
     }

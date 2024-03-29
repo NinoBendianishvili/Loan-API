@@ -8,7 +8,7 @@ namespace capstone.Repository
     public class LoanRepository : ILoanRepository
     {
         private readonly Context _context;
-        private readonly IUserRepository _userRepository; // Inject IUserRepository
+        private readonly IUserRepository _userRepository; 
 
         public LoanRepository(Context context, IUserRepository userRepository)
         {
@@ -37,7 +37,7 @@ namespace capstone.Repository
                 LoanType = loan.LoanType,
                 Period = loan.Period,
                 Status = "In Progress",
-                UserId = user.Id // Assuming 'User' is the navigation property in the Loan class
+                UserId = user.Id
             };
 
             using (var transaction = _context.Database.BeginTransaction())
@@ -53,9 +53,8 @@ namespace capstone.Repository
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); // Rollback transaction if an exception occurs
-                    // Log or handle the exception
-                    throw; // Re-throw the exception for higher-level handling
+                    transaction.Rollback(); 
+                    throw; 
                 }
             }
 
@@ -82,9 +81,9 @@ namespace capstone.Repository
                 user.Loans.Remove(loanToRemove);
                 _context.Users.Update(user);
                 _context.SaveChanges();
-                return true; // Loan deleted successfully
+                return true; 
             }
-            return false; // Loan with the given id not found
+            return false; 
         }
 
         public Boolean modifyLoan(int userId, LoanDto newLoan)
@@ -107,7 +106,6 @@ namespace capstone.Repository
         }
         public ICollection<Loan> GetAllLoans()
         {
-            // Retrieve all loans from the database
             return _context.Loans.ToList();
         }
     }

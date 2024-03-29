@@ -15,15 +15,10 @@ using Microsoft.Extensions.Logging;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
-    
-    // Add JWT Bearer authentication support
     var securityScheme = new OpenApiSecurityScheme
     {
         Name = "Authorization",

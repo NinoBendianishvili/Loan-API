@@ -11,7 +11,7 @@ namespace capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoanController : ControllerBase // Changed from 'Controller' to 'ControllerBase'
+    public class LoanController : ControllerBase 
     {
         private readonly IUserRepository _userRepository;
         private readonly ILoanRepository _loanRepository;
@@ -36,7 +36,6 @@ namespace capstone.Controllers
             try
             {
                 _logger.LogInformation("trying to add loan");
-                // Retrieve JWT token from the HTTP context
                 var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
                 _logger.LogInformation("token is extracted");
                 if (!_tokenService.GetRoleFromToken(token).Equals("User"))
@@ -45,17 +44,14 @@ namespace capstone.Controllers
                     return Unauthorized(new { message = "Accountants doesn't have access on this information" });
                 }
 
-                // Extract user ID from the JWT token
                 var userId =
-                    _tokenService.GetUserIdFromToken(token); // Assuming _tokenService and _appSettings are injected
+                    _tokenService.GetUserIdFromToken(token); 
                 if (!userId.HasValue)
                 {
                     _logger.LogError("User Id could not be extracted");
-                    return Unauthorized(new { message = "Invalid token" }); // Corrected to return Unauthorized
+                    return Unauthorized(new { message = "Invalid token" });
                 }
                 _logger.LogInformation("User Id is extracted");
-
-                // Add the loan for the user with the extracted user ID
                 _loanRepository.AddLoan(userId.Value, loan);
                 _logger.LogInformation("Loan added successfully");
 
@@ -64,7 +60,6 @@ namespace capstone.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("An error occurred while adding the loan");
-                // Log or handle the exception
                 return StatusCode(500, new { message = "An error occurred while adding the loan" });
             }
         }

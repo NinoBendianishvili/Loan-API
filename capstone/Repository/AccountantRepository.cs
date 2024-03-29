@@ -23,7 +23,6 @@ public class AccountantRepository : IAccountantRepository
     
     public ICollection<Loan> GetAllLoans()
     {
-        // Retrieve all loans from the database
         return _context.Loans.ToList();
     }
 
