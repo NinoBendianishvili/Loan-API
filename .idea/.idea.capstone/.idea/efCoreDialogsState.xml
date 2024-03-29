@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:47fdf089-14d2-4825-a6da-3a029df31ed3:dbContext" value="capstone.Data.Context" />
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:enableDiagnosticLogging" value="true" />
+        <entry key="Common:noBuild" value="true" />
+        <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:targetFramework" value="net8.0" />
+        <entry key="Common:useDefaultConnection" value="false" />
+      </map>
+    </option>
+  </component>
+</project>
